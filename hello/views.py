@@ -14,6 +14,12 @@ def about(request):
 def services(request):
     return render(request, 'services.html')
 
+def fybsc(request):
+    return render(request, 'fybsc.html')
+
+def sybsc(request):
+    return render(request, 'sybsc.html')
+
 def login(request):
  if request.method == 'POST':
   username = request.POST.get('username')
