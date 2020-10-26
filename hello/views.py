@@ -30,7 +30,6 @@ def login(request):
 
   login = Login(username=username, password=password, date=datetime.today())
   
-  print(username.count())
 
   login.save()
   messages.success(request, 'You are Successfully Logged In')
