@@ -20,6 +20,9 @@ def fybsc(request):
 def sybsc(request):
     return render(request, 'sybsc.html')
 
+def notice(request):
+    return render(request, 'notice.html')
+
 def login(request):
  if request.method == 'POST':
   username = request.POST.get('username')
