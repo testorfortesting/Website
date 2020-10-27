@@ -1,4 +1,4 @@
-from hello.views import fybsc, signup
+from hello.views import fybsc, handlelogout, signup
 from django.contrib import admin
 from django.urls import path
 from . import views
@@ -8,7 +8,8 @@ urlpatterns = [
     path("about", views.about, name='about'),
     path("services", views.services, name='services'),
     path("contact", views.contact, name='contact'), 
-    path("login", views.login, name='Login'),
+    path("login", views.handlelogin, name='handlelogin'),
+    path('logout', views.handlelogout, name = 'handlelogout'),
     path("signup", views.signup, name='Signup'),
     path("forgetpassword", views.forgetpassword, name='Password'),
     path("fybsc", views.fybsc, name = 'FYBSC'),

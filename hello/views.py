@@ -1,8 +1,11 @@
+from django.contrib.auth.models import User
+from django.db import reset_queries
 from django.http import request
 from django.shortcuts import render, HttpResponse
 from datetime import datetime
 from hello.models import Contact, Login, Signup
 from django.contrib import  messages
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def index(request):
@@ -23,29 +26,57 @@ def sybsc(request):
 def notice(request):
     return render(request, 'notice.html')
 
-def login(request):
- if request.method == 'POST':
-  username = request.POST.get('username')
-  password = request.POST.get('password')
-
-  login = Login(username=username, password=password, date=datetime.today())
-  
-
-  login.save()
-  messages.success(request, 'You are Successfully Logged In')
- return render(request, 'login.html')
 
 def signup(request):
  if request.method == 'POST':
-  username = request.POST.get('username')
-  password = request.POST.get('password')
-  conferm_password = request.POST.get('conferm_password')
-  email = request.POST.get('email')
-  signup = Signup(username = username, password=password, conferm_password=conferm_password,email=email, date= datetime.today())
-  signup.save()
+  username = request.POST['username']
+  pass1 = request.POST['pass1']
+  pass2 = request.POST['pass2']
+  email = request.POST['email']
+ 
+  #Check For Username
+  if len(username) > 10:
+      messages.error(request, "Username Must Be under 1- Characters")
+      return render(request, 'signup.html')
+
+  if not username.isalnum():
+      messages.error(request, "Username Should Contain Letter and Numbers")
+      return render(request, 'signup.html')
+  #Password Checking
+  if pass1 != pass2:
+      messages.error(request, "Password do not Match")
+      return render(request, 'signup.html')
+
+  #Create The User
+  myuser = User.objects.create_user(username, email, pass1)
+  myuser.save()
   messages.success(request, 'Your Account has been Created')
+  return render(request, 'index.html')
+
  return render(request, 'signup.html')
 
+def handlelogin(request):
+ if request.method == 'POST':
+  loginusername = request.POST['loginusername']
+  loginpassword = request.POST['loginpassword']
+
+  user = authenticate(username= loginusername, password= loginpassword)
+
+  if user is not None:
+      login(request, user)
+      messages.success(request, "Successfully Logged In")
+      return render(request, 'index.html')
+  else:
+      messages.error(request, "Invalid Credentials, Please Try Again")
+      return render(request, 'login.html') 
+
+ return render(request, 'login.html')
+
+def handlelogout(request):
+    logout(request)
+    messages.success(request, "Successfully Logged Out")
+    return render(request, 'index.html')
+    
 def forgetpassword(request):
     return render(request, 'forgetpassword.html')
 def contact(request):
