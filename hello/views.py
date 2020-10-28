@@ -94,3 +94,6 @@ def contact(request):
 
 def search(request):
     return HttpResponse('This is search')
+
+def result(request):
+    return render(request, 'result.html')
