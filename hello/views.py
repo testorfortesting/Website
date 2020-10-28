@@ -76,7 +76,7 @@ def handlelogout(request):
     logout(request)
     messages.success(request, "Successfully Logged Out")
     return render(request, 'index.html')
-    
+
 def forgetpassword(request):
     return render(request, 'forgetpassword.html')
 def contact(request):
@@ -90,3 +90,7 @@ def contact(request):
      messages.success(request, 'Your message has been sent.')
 
     return render(request, 'contact.html') 
+
+
+def search(request):
+    return HttpResponse('This is search')

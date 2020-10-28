@@ -1,4 +1,4 @@
-from hello.views import fybsc, handlelogout, signup
+from hello.views import fybsc, handlelogout, search, signup
 from django.contrib import admin
 from django.urls import path
 from . import views
@@ -14,5 +14,6 @@ urlpatterns = [
     path("forgetpassword", views.forgetpassword, name='Password'),
     path("fybsc", views.fybsc, name = 'FYBSC'),
     path("sybsc", views.sybsc, name = 'SYBSC'),
-    path("notice", views.notice, name = 'Notice')
+    path("notice", views.notice, name = 'Notice'),
+    path("search", views.search, name = "search")
 ]
