@@ -16,5 +16,9 @@ urlpatterns = [
     path("fybsc", views.fybsc, name = 'FYBSC'),
     path("sybsc", views.sybsc, name = 'SYBSC'),
     path("notice", views.notice, name = 'Notice'),
-    path("search", views.search, name = "search")
+    path("search", views.search, name = "search"),
+    path("admission", views.admission, name = 'admission'),
+    path("books", views.books, name='books'),
+    path("department", views.department, name='department'),
+    path("teacher", views.teacher, name='teacher')
 ]

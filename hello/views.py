@@ -97,3 +97,15 @@ def search(request):
 
 def result(request):
     return render(request, 'result.html')
+
+def admission(request):
+    return render(request, 'admission.html')
+
+def books(request):
+    return render(request, 'books.html')
+
+def department(request):
+    return render(request, 'department.html')
+
+def teacher(request):
+    return render(request, 'teacher.html')
